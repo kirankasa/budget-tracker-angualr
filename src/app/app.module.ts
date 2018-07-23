@@ -7,8 +7,9 @@ import { MyNavComponent } from './my-nav/my-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { AppRoutingModule } from './/app-routing.module';
-import { CategoryListComponent } from './category-list/category-list.component';
+import { CategoryListComponent } from './category/category-list/category-list.component';
 import { TransactionListComponent } from './transaction-list/transaction-list.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TransactionListComponent } from './transaction-list/transaction-list.co
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
