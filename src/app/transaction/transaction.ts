@@ -1,9 +1,8 @@
 export class Transaction {
-  constructor(private  id: String,
-              private type: String,
-              private amount: string,
-              private date: String,
-              private note: String,
-              private category: String) {
-  }
+  id: String;
+  type: String;
+  amount: string;
+  date: any;
+  note: String;
+  category: String
 }

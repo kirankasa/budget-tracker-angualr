@@ -12,7 +12,7 @@ import {Category} from "../../category/category";
 })
 export class AddTransactionComponent implements OnInit {
 
-  private transaction: Transaction = new Transaction(null, "D", "", "", "", "");
+  private transaction: Transaction = new Transaction();
   private categories: Category[] = [];
   private transactionTypes = [{"code": "C", "description": "Credit"}, {"code": "D", "description": "Debit"}];
 
@@ -28,7 +28,7 @@ export class AddTransactionComponent implements OnInit {
   }
 
   addTransaction(transaction: Transaction) {
-    console.log(transaction);
+    transaction.date = transaction.date.format("YYYY-MM-DD");
     this.transactionService.addTransaction(transaction).subscribe(data => {
       this.router.navigate(["/transactions"])
     });

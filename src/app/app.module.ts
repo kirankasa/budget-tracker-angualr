@@ -12,8 +12,9 @@ import {
   MatSidenavModule,
   MatIconModule,
   MatListModule,
-  MatNativeDateModule, MatFormFieldModule, MatInputModule
+  MatFormFieldModule, MatInputModule
 } from '@angular/material';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { AppRoutingModule } from './app-routing.module';
 import { CategoryListComponent } from './category/category-list/category-list.component';
@@ -49,7 +50,7 @@ import { AddTransactionComponent } from './transaction/add-transaction/add-trans
     MatTableModule,
     MatDatepickerModule,
     MatFormFieldModule,
-    MatNativeDateModule,
+    MatMomentDateModule,
     AppRoutingModule
   ],
   providers: [],
