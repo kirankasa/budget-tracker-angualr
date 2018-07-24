@@ -1,0 +1,37 @@
+<div class="container mt-3">
+  <div class="col-md-6">
+    <form (ngSubmit)="addTransaction(transaction)" #transactionForm="ngForm">
+      <div class="form-group">
+        <label for="type">Transaction Type</label>
+        <select class="form-control" id="type" required [(ngModel)]="transaction.type" name="type">
+          <option *ngFor="let type of transactionTypes" [value]="type.code">{{type.description}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="category">Transaction Category</label>
+        <select class="form-control" id="category" required [(ngModel)]="transaction.category" name="category">
+          <option *ngFor="let category of categories" [value]="category.category">{{category.category}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="amount">Transaction Amount</label>
+        <input type="text" [(ngModel)]="transaction.amount" required class="form-control" id="amount" name="amount"
+               required>
+      </div>
+      <div class="form-group">
+        <label for="date">Transaction Date</label>
+        <div class="input-group">
+          <input disabled matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="transaction.date"
+                 class="form-control" id="date" name="date" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker disabled="false" #picker></mat-datepicker>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="note">Additional Notes</label>
+        <input type="text" [(ngModel)]="transaction.note" class="form-control" id="note" name="note" required>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!transactionForm.valid">Add</button>
+    </form>
+  </div>
+</div>

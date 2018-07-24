@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from "../transaction.service";
 import {Transaction} from "../transaction";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-transaction-list',
@@ -9,17 +10,22 @@ import {Transaction} from "../transaction";
 })
 export class TransactionListComponent implements OnInit {
 
-  displayedColumns: string[] = ['category', 'type', 'amount', 'date', 'note' ];
+  private displayedColumns: string[] = ['category', 'type', 'amount', 'date', 'note' ];
 
-  constructor(private transactionService: TransactionService) {
+  constructor(private transactionService: TransactionService,
+              private router: Router) {
   }
 
-  public transactions: Transaction [] = [];
+  private transactions: Transaction [] = [];
 
   ngOnInit() {
     this.transactionService.getTransactions().subscribe(data => {
       this.transactions = data;
     });
+  }
+
+  addNewTransaction(){
+    this.router.navigate(['/addTransaction']);
   }
 
 }
