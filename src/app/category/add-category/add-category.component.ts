@@ -17,10 +17,10 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit() {
   }
 
-  addCategory(category: String){
+  addCategory(category: string){
     this.categoryService.addCategory(category).subscribe(cat =>{
      this.category ="";
-      this.messageEvent.emit("success");
+      this.messageEvent.emit();
     });
   }
 

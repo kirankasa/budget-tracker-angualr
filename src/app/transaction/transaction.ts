@@ -1,8 +1,8 @@
 export class Transaction {
-  id: String;
-  type: String;
+  id: string;
+  type: string;
   amount: string;
   date: any;
-  note: String;
-  category: String
+  note: string;
+  category: string
 }

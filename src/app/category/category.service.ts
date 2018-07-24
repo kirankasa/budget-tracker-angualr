@@ -19,7 +19,9 @@ export class CategoryService {
     return this.http.get<Category[]>(this.RETRIEVE_CATEGORIES_URL)
   }
 
-  addCategory(category: String): Observable<Category> {
-    return this.http.post<Category>(this.ADD_CATEGORY_URL, new Category(null, category))
+  addCategory(category: string): Observable<Category> {
+    let newCategory = new Category();
+    newCategory.category = category;
+    return this.http.post<Category>(this.ADD_CATEGORY_URL, newCategory)
   }
 }
