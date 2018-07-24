@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
 import {CategoryListComponent} from "./category/category-list/category-list.component";
 import {TransactionListComponent} from "./transaction-list/transaction-list.component";
+import {CategoryComponent} from './category/category.component';
 
 const routes : Routes =[
-  { path: 'categories', component: CategoryListComponent },
+  { path: 'categories', component: CategoryComponent },
   { path: 'transactions', component: TransactionListComponent },
 ];
 

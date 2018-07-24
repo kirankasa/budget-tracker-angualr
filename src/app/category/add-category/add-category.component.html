@@ -1,0 +1,9 @@
+<div>
+  <form (ngSubmit)="addCategory(category)" #categoryForm="ngForm">
+    <div class="form-group">
+      <label for="category">Category</label>
+      <input type="text" [(ngModel)]="category" required class="form-control" id="category" name="category" required>
+    </div>
+    <button type="submit" class="btn btn-success" [disabled]="!categoryForm.valid">Add</button>
+  </form>
+</div>

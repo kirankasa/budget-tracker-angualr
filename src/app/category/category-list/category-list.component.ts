@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs/internal/Observable";
-import {Category} from "../category";
-import {CategoryService} from "../category.service";
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs/internal/Observable';
+import {Category} from '../category';
+import {CategoryService} from '../category.service';
 
 @Component({
   selector: 'app-category-list',
@@ -11,16 +11,14 @@ import {CategoryService} from "../category.service";
 })
 export class CategoryListComponent implements OnInit {
 
- public categories = [];
+  @Input() categories: Category[];
 
-  constructor(private categoryService: CategoryService) { }
 
-  ngOnInit() {
-    this.categoryService.getCategories().subscribe(categories => {
-      this.categories =categories;
-    });
+  constructor() {
   }
 
+  ngOnInit() {
+  }
 
 
 }
