@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class TransactionListComponent implements OnInit {
 
-  private displayedColumns: string[] = ['category', 'type', 'amount', 'date', 'note' ];
+  private displayedColumns: string[] = ['category', 'type', 'amount', 'date', 'note', 'edit', 'delete'];
 
   constructor(private transactionService: TransactionService,
               private router: Router) {
@@ -19,13 +19,27 @@ export class TransactionListComponent implements OnInit {
   private transactions: Transaction [] = [];
 
   ngOnInit() {
+    this.getTransactions();
+  }
+
+  getTransactions() {
     this.transactionService.getTransactions().subscribe(data => {
       this.transactions = data;
     });
   }
 
-  addNewTransaction(){
-    this.router.navigate(['/addTransaction']);
+  addNewTransaction() {
+    this.router.navigate(['/transaction-add']);
+  }
+
+  editTransaction(id: string) {
+    this.router.navigate(['/transaction-edit', id]);
+  }
+
+  deleteTransaction(id: string) {
+    this.transactionService.deleteTransaction(id).subscribe(() => {
+      this.getTransactions();
+    });
   }
 
 }

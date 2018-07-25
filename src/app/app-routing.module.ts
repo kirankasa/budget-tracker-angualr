@@ -6,9 +6,11 @@ import {CategoryComponent} from './category/category.component';
 import {AddTransactionComponent} from "./transaction/add-transaction/add-transaction.component";
 
 const routes : Routes =[
+  { path: '', redirectTo: '/transaction-list', pathMatch: 'full' },
   { path: 'categories', component: CategoryComponent },
-  { path: 'addTransaction', component: AddTransactionComponent },
-  { path: 'transactions', component: TransactionListComponent },
+  { path: 'transaction-add', component: AddTransactionComponent },
+  { path: 'transaction-edit/:id', component: AddTransactionComponent },
+  { path: 'transaction-list', component: TransactionListComponent },
 ];
 
 @NgModule({

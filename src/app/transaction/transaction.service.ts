@@ -19,7 +19,15 @@ export class TransactionService {
     return this.http.get<Transaction[]>(this.RETRIEVE_TRANSACTIONS_URL);
   }
 
-  addTransaction(transaction: Transaction): Observable<Transaction> {
+  getTransaction(id: string): Observable<Transaction> {
+    return this.http.get<Transaction>(this.RETRIEVE_TRANSACTIONS_URL+"/" + id);
+  }
+
+  deleteTransaction(id: string): Observable<void> {
+    return this.http.delete<void>(this.RETRIEVE_TRANSACTIONS_URL+"/" + id);
+  }
+
+  saveTransaction(transaction: Transaction): Observable<Transaction> {
     return this.http.post<Transaction>(this.ADD_TRANSACTION_URL, transaction);
   }
 }

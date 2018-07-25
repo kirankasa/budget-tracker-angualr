@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Transaction} from "../transaction";
 import {TransactionService} from "../transaction.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CategoryService} from "../../category/category.service";
 import {Category} from "../../category/category";
+import * as moment from 'moment'
 
 @Component({
   selector: 'app-add-transaction',
@@ -18,20 +19,42 @@ export class AddTransactionComponent implements OnInit {
 
   constructor(private transactionService: TransactionService,
               private categoryService: CategoryService,
-              private router: Router) {
+              private router: Router,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.categoryService.getCategories().subscribe(data=>{
+    this.categoryService.getCategories().subscribe(data => {
       this.categories = data;
     });
+
+    this.route.params.subscribe(params => {
+      const id = params['id'];
+      if (id) {
+        this.transactionService.getTransaction(id).subscribe((transaction: Transaction) => {
+          if (transaction) {
+            transaction.date = moment(transaction.date, "YYYY-MM-DD");
+            this.transaction = transaction;
+          }
+        })
+      }
+
+    })
   }
 
   addTransaction(transaction: Transaction) {
     transaction.date = transaction.date.format("YYYY-MM-DD");
-    this.transactionService.addTransaction(transaction).subscribe(data => {
-      this.router.navigate(["/transactions"])
+    this.transactionService.saveTransaction(transaction).subscribe(data => {
+      this.goToTransactionList();
     });
+  }
+
+  cancel() {
+    this.goToTransactionList();
+  }
+
+  goToTransactionList() {
+    this.router.navigate(["/transaction-list"])
   }
 
 }
