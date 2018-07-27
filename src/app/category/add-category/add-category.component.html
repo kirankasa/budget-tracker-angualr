@@ -2,7 +2,11 @@
   <form (ngSubmit)="addCategory(category)" #categoryForm="ngForm">
     <div class="form-group">
       <label for="category">Category</label>
-      <input type="text" [(ngModel)]="category" required class="form-control" id="category" name="category" required>
+      <input type="text" [(ngModel)]="category.category" class="form-control" id="category" name="category" required #cate="ngModel">
+      <div *ngIf="cate.invalid && (cate.dirty || cate.touched)"
+           class="alert alert-danger">
+        Category is required
+      </div>
     </div>
     <button type="submit" class="btn btn-success" [disabled]="!categoryForm.valid">Add</button>
   </form>

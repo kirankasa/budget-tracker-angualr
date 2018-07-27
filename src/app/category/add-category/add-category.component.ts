@@ -1,5 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {CategoryService} from '../category.service';
+import {Category} from "../category";
 
 @Component({
   selector: 'app-add-category',
@@ -10,16 +11,16 @@ export class AddCategoryComponent implements OnInit {
 
   constructor(private categoryService: CategoryService) { }
 
-  category= "";
+  private category: Category = new Category();
 
   @Output() messageEvent = new EventEmitter<string>();
 
   ngOnInit() {
   }
 
-  addCategory(category: string){
+  addCategory(category: Category){
     this.categoryService.addCategory(category).subscribe(cat =>{
-     this.category ="";
+     this.category =new Category();
       this.messageEvent.emit();
     });
   }

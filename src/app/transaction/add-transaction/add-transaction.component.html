@@ -3,33 +3,50 @@
     <form (ngSubmit)="addTransaction(transaction)" #transactionForm="ngForm">
       <div class="form-group">
         <label for="type">Transaction Type</label>
-        <select class="form-control" id="type" required [(ngModel)]="transaction.type" name="type">
+        <select class="form-control" id="type" required [(ngModel)]="transaction.type" name="type" #type="ngModel">
           <option *ngFor="let type of transactionTypes" [value]="type.code">{{type.description}}</option>
         </select>
+        <div *ngIf="type.invalid && (type.dirty || type.touched)"
+             class="alert alert-danger">
+          Transaction type is required
+        </div>
       </div>
       <div class="form-group">
         <label for="category">Transaction Category</label>
-        <select class="form-control" id="category" required [(ngModel)]="transaction.category" name="category">
+        <select class="form-control" id="category" required [(ngModel)]="transaction.category" name="category"
+                #category="ngModel">
           <option *ngFor="let category of categories" [value]="category.category">{{category.category}}</option>
         </select>
+        <div *ngIf="category.invalid && (category.dirty || category.touched)"
+             class="alert alert-danger">
+          Transaction category is required
+        </div>
       </div>
       <div class="form-group">
         <label for="amount">Transaction Amount</label>
-        <input type="text" [(ngModel)]="transaction.amount" required class="form-control" id="amount" name="amount"
-               required>
+        <input type="number" [(ngModel)]="transaction.amount" class="form-control" id="amount" name="amount"
+               required #amount="ngModel">
+        <div *ngIf="amount.invalid && (amount.dirty || amount.touched)"
+             class="alert alert-danger">
+          Transaction Amount is required
+        </div>
       </div>
       <div class="form-group">
         <label for="date">Transaction Date</label>
         <div class="input-group">
-          <input disabled matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="transaction.date"
-                 class="form-control" id="date" name="date" required>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" [(ngModel)]="transaction.date"
+                 class="form-control" id="date" name="date" required #date="ngModel">
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker disabled="false" #picker></mat-datepicker>
+        </div>
+        <div *ngIf="date.invalid && (date.dirty || date.touched)"
+             class="alert alert-danger">
+          Transaction Date is required
         </div>
       </div>
       <div class="form-group">
         <label for="note">Additional Notes</label>
-        <input type="text" [(ngModel)]="transaction.note" class="form-control" id="note" name="note" required>
+        <input type="text" [(ngModel)]="transaction.note" class="form-control" id="note" name="note">
       </div>
       <div>
         <button type="submit" class="btn btn-primary btn-block" [disabled]="!transactionForm.valid">
