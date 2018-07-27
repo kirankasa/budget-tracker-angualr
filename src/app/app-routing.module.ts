@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from "@angular/router";
-import {CategoryListComponent} from "./category/category-list/category-list.component";
 import {TransactionListComponent} from "./transaction/transaction-list/transaction-list.component";
 import {CategoryComponent} from './category/category.component';
 import {AddTransactionComponent} from "./transaction/add-transaction/add-transaction.component";
+import {RegisterUserComponent} from "./user/register-user/register-user.component";
 
 const routes : Routes =[
   { path: '', redirectTo: '/transaction-list', pathMatch: 'full' },
@@ -11,6 +11,7 @@ const routes : Routes =[
   { path: 'transaction-add', component: AddTransactionComponent },
   { path: 'transaction-edit/:id', component: AddTransactionComponent },
   { path: 'transaction-list', component: TransactionListComponent },
+  { path: 'register-user', component: RegisterUserComponent },
 ];
 
 @NgModule({
