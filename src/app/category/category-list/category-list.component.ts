@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/internal/Observable';
 import {Category} from '../category';
 import {CategoryService} from '../category.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-category-list',
@@ -11,14 +12,35 @@ import {CategoryService} from '../category.service';
 })
 export class CategoryListComponent implements OnInit {
 
-  @Input() categories: Category[];
+  private categories: Category[] = [];
+  private displayedColumns: string[] = ['category', 'edit', 'delete'];
 
-
-  constructor() {
+  constructor(private categoryService: CategoryService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    this.getCategories();
   }
 
+  getCategories() {
+    this.categoryService.getCategories().subscribe(categories => {
+      this.categories = categories;
+    });
+  }
+
+  addNewCategory() {
+    this.router.navigate(['/category-add']);
+  }
+
+  deleteCategory(id: string) {
+    this.categoryService.deleteCategory(id).subscribe(() => {
+      this.getCategories();
+    });
+  }
+
+  editCategory(id: string) {
+    this.router.navigate(['/category-edit', id]);
+  }
 
 }

@@ -22,10 +22,10 @@ import {TransactionListComponent} from './transaction/transaction-list/transacti
 import {HttpClientModule} from "@angular/common/http";
 import {AddCategoryComponent} from './category/add-category/add-category.component';
 import {FormsModule} from '@angular/forms';
-import {CategoryComponent} from './category/category.component';
 import {AddTransactionComponent} from './transaction/add-transaction/add-transaction.component';
 import {RegisterUserComponent} from './user/register-user/register-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -34,7 +34,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CategoryListComponent,
     TransactionListComponent,
     AddCategoryComponent,
-    CategoryComponent,
     AddTransactionComponent,
     RegisterUserComponent
   ],
@@ -55,6 +54,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatFormFieldModule,
     MatMomentDateModule,
     AppRoutingModule,
+    FlexLayoutModule,
     NgbModule.forRoot()
   ],
   providers: [],

@@ -1,6 +1,37 @@
-<div>
-  <h3>Categories</h3>
-  <mat-nav-list>
-    <a mat-list-item routerLink="#" *ngFor="let category of categories"> {{ category.category }} </a>
-  </mat-nav-list>
+<div class="container">
+  <div class="row offset-md-8 mt-3">
+    <button (click)="addNewCategory()" class="btn btn-primary btn-sm">
+      <span>New Category<mat-icon>add_circle_outline</mat-icon></span>
+    </button>
+  </div>
+  <div class="row offset-2  mt-3">
+    <table mat-table [dataSource]="categories" class="mat-elevation-z8">
+      <ng-container matColumnDef="category">
+        <th mat-header-cell *matHeaderCellDef fxFlex="600px"> Category</th>
+        <td mat-cell *matCellDef="let element" fxFlex="600px"> {{element.category}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="editCategory(element.id)">
+            <mat-icon aria-label="Edit">edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef></th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="deleteCategory(element.id)">
+            <mat-icon aria-label="Delete">delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
 </div>

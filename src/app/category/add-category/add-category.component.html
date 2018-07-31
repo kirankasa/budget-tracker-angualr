@@ -1,13 +1,19 @@
-<div>
-  <form (ngSubmit)="addCategory(category)" #categoryForm="ngForm">
-    <div class="form-group">
-      <label for="category">Category</label>
-      <input type="text" [(ngModel)]="category.category" class="form-control" id="category" name="category" required #cate="ngModel">
-      <div *ngIf="cate.invalid && (cate.dirty || cate.touched)"
-           class="alert alert-danger">
-        Category is required
+<div class="container mt-5">
+  <div class="offset-2 col-md-6">
+    <form (ngSubmit)="addCategory(category)" #categoryForm="ngForm">
+      <div class="form-group">
+        <label for="category">Category</label>
+        <input type="text" [(ngModel)]="category.category" class="form-control" id="category" name="category" required
+               #cate="ngModel">
+        <div *ngIf="cate.invalid && (cate.dirty || cate.touched)"
+             class="alert alert-danger">
+          Category is required
+        </div>
       </div>
-    </div>
-    <button type="submit" class="btn btn-success" [disabled]="!categoryForm.valid">Add</button>
-  </form>
+      <button type="submit" class="btn btn-success btn-block" [disabled]="!categoryForm.valid">
+        {{category.id? 'Edit' : 'Add' }}
+      </button>
+      <button type="button" (click)="cancel()" class="btn btn-secondary btn-block mt-3">Cancel</button>
+    </form>
+  </div>
 </div>
