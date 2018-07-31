@@ -25,6 +25,7 @@ import {FormsModule} from '@angular/forms';
 import {CategoryComponent} from './category/category.component';
 import {AddTransactionComponent} from './transaction/add-transaction/add-transaction.component';
 import {RegisterUserComponent} from './user/register-user/register-user.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import {RegisterUserComponent} from './user/register-user/register-user.componen
     MatDatepickerModule,
     MatFormFieldModule,
     MatMomentDateModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
